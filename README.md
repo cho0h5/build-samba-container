@@ -17,5 +17,5 @@ docker run -d \
 	-e SMB_USERNAME=mike \
 	-e SMB_USERPASSWD=mike \
 	--name samba \
-	samba
+	cho0h5/samba
 ```
