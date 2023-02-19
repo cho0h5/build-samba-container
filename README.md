@@ -1,9 +1,10 @@
 # container-samba
 
 ## example
-### build
+### build and publish
 ``` bash
-docker build -t samba .
+docker build -t cho0h5/samba .
+docker publish cho0h5/samba
 ```
 
 ### run
