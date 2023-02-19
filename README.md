@@ -11,7 +11,7 @@ docker build -t samba .
 #!/usr/bin/bash
 docker run -d \
 	-p 445:445 \
-	--restart=unless=stopped \
+	--restart=unless-stopped \
 	-v ~/tmp/nas/data:/samba/data \
 	-e SMB_USERNAME=mike \
 	-e SMB_USERPASSWD=mike \
