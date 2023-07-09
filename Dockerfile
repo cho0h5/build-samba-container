@@ -1,10 +1,10 @@
 FROM ubuntu:jammy
 
-ENV SMB_USERNAME sambatest
-ENV SMB_USERPASSWD sambatest
+ENV SMB_SSFORKLIFT_PASSOWRD sambatest
+ENV SMB_YOUNGHO_PASSWORD sambatest
 
-VOLUME ["/samba/data"]
-RUN mkdir -p /samba/data
+VOLUME ["/media/ssforklift"]
+VOLUME ["/media/youngho"]
 
 RUN apt update && apt upgrade -y && apt install -y samba
 
