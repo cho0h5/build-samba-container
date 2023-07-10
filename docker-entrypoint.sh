@@ -38,8 +38,8 @@ addgroup --gid 2000 family
 useradd --uid 2000 --no-create-home -s /usr/sbin/nologin -g family ssforklift
 useradd --uid 2001 --no-create-home -s /usr/sbin/nologin -g family youngho
 
-chown ssforklift:family /media/ssforklift/
-chown youngho:family /media/youngho/
+chown -R ssforklift:family /media/ssforklift/
+chown -R youngho:family /media/youngho/
 
 (echo $SMB_SSFORKLIFT_PASSWORD; echo $SMB_SSFORKLIFT_PASSWORD) | smbpasswd -s -a ssforklift
 (echo $SMB_YOUNGHO_PASSWORD; echo $SMB_YOUNGHO_PASSWORD) | smbpasswd -s -a youngho
