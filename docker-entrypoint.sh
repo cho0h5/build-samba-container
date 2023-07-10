@@ -12,16 +12,12 @@ cat << EOF > /etc/samba/smb.conf
    path = /media/ssforklift
    browseable = no
    read only = no
-   force create mode = 0600
-   force directory mode = 2700
    valid users = ssforklift
 
 [youngho]
    path = /media/youngho
    browseable = no
    read only = no
-   force create mode = 0600
-   force directory mode = 2700
    valid users = youngho
 
 [public_files]
@@ -29,8 +25,6 @@ cat << EOF > /etc/samba/smb.conf
     browsable = yes
     guest ok = yes
     writable = yes
-    create mask = 0775
-    directory mask = 0755
 EOF
 
 addgroup --gid 2000 family
