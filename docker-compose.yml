@@ -2,7 +2,7 @@ services:
     samba:
         ports:
             - "${SMB_PORT}:445"
-        restart: always
+        restart: unless-stopped
         volumes:
             - ${SMB_DATAPATH}:/samba/data
         environment:
@@ -10,4 +10,4 @@ services:
             SMB_USERPASSWD: ${SMB_USERPASSWD}
             SMB_UID: ${SMB_UID}
             SMB_GID: ${SMB_GID}
-        image: cho0h5/samba
+        image: ghcr.io/cho0h5/build-samba-container:main
