@@ -1,7 +1,7 @@
 #!/bin/sh
 cat << EOF > /etc/samba/smb.conf
 [global]
-   server string = %h server (Samba, Ubuntu)
+   server string = %h server (Samba, Alpine)
    server role = standalone server
    disable netbios = yes
    smb ports = 445
@@ -16,9 +16,9 @@ cat << EOF > /etc/samba/smb.conf
    force directory mode = 2770
    valid users = $SMB_USERNAME
 EOF
-useradd -d /samba/$SMB_USERNAME/ -s /usr/sbin/nologin -g sambashare $SMB_USERNAME
+addgroup -S sambashare
+adduser -D -H -s /sbin/nologin -G sambashare $SMB_USERNAME
 chown $SMB_USERNAME:sambashare /samba/data/
 (echo $SMB_USERPASSWD; echo $SMB_USERPASSWD) | smbpasswd -s -a $SMB_USERNAME
 smbpasswd -e $SMB_USERNAME
-service smbd start
-while true; do sleep 10000; done
+exec smbd --foreground --no-process-group
