@@ -1,8 +1,8 @@
 #!/bin/sh
 set -e
 
-if [ -z "$SMB_USERNAME" ] || [ -z "$SMB_USERPASSWD" ]; then
-    echo "Error: SMB_USERNAME and SMB_USERPASSWD must be set"
+if [ -z "$SMB_USERNAME" ] || [ -z "$SMB_USERPASSWD" ] || [ -z "$SMB_UID" ] || [ -z "$SMB_GID" ]; then
+    echo "Error: SMB_USERNAME, SMB_USERPASSWD, SMB_UID, and SMB_GID must be set"
     exit 1
 fi
 
@@ -23,8 +23,8 @@ cat << EOF > /etc/samba/smb.conf
    force directory mode = 2770
    valid users = $SMB_USERNAME
 EOF
-addgroup -S sambashare
-adduser -D -H -s /sbin/nologin -G sambashare "$SMB_USERNAME"
+addgroup -S -g "$SMB_GID" sambashare
+adduser -D -H -s /sbin/nologin -u "$SMB_UID" -G sambashare "$SMB_USERNAME"
 chown "$SMB_USERNAME":sambashare /samba/data/
 (echo "$SMB_USERPASSWD"; echo "$SMB_USERPASSWD") | smbpasswd -s -a "$SMB_USERNAME"
 smbpasswd -e "$SMB_USERNAME"
