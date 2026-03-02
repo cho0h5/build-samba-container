@@ -12,8 +12,8 @@ cat << EOF > /etc/samba/smb.conf
    server role = standalone server
    disable netbios = yes
    smb ports = 445
-   log file = /var/log/samba/log.%m
-   max log size = 1000
+   log file = /dev/stdout
+   max log size = 0
 
 [$SMB_USERNAME]
    path = /samba/data
