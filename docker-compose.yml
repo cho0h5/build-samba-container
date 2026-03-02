@@ -1,5 +1,6 @@
 services:
     samba:
+        container_name: samba
         ports:
             - "${SMB_PORT}:445"
         restart: unless-stopped
