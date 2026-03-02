@@ -1,4 +1,11 @@
 #!/bin/sh
+set -e
+
+if [ -z "$SMB_USERNAME" ] || [ -z "$SMB_USERPASSWD" ]; then
+    echo "Error: SMB_USERNAME and SMB_USERPASSWD must be set"
+    exit 1
+fi
+
 cat << EOF > /etc/samba/smb.conf
 [global]
    server string = %h server (Samba, Alpine)
