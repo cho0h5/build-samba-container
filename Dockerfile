@@ -6,7 +6,7 @@ ENV SMB_USERPASSWD sambatest
 VOLUME ["/samba/data"]
 
 RUN mkdir -p /samba/data && \
-    apk add --no-cache samba
+    apk add --no-cache samba-server samba-common-tools
 
 COPY docker-entrypoint.sh /docker-entrypoint.sh
 
