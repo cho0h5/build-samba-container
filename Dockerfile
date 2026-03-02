@@ -1,7 +1,7 @@
 FROM alpine:3.21
 
-ENV SMB_USERNAME sambatest
-ENV SMB_USERPASSWD sambatest
+ENV SMB_USERNAME=sambatest
+ENV SMB_USERPASSWD=sambatest
 
 VOLUME ["/samba/data"]
 
