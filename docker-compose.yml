@@ -1,0 +1,13 @@
+services:
+    samba:
+        ports:
+            - "${SMB_PORT}:445"
+        restart: always
+        volumes:
+            - ${SMB_DATAPATH}:/samba/data
+        environment:
+            SMB_USERNAME: ${SMB_USERNAME}
+            SMB_USERPASSWD: ${SMB_USERPASSWD}
+            SMB_UID: ${SMB_UID}
+            SMB_GID: ${SMB_GID}
+        image: cho0h5/samba
