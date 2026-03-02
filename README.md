@@ -1,21 +1,21 @@
 # container-samba
 
-## example
-### build and publish
-``` bash
-docker build -t cho0h5/samba .
-docker publish cho0h5/samba
+## Run
+
+```bash
+docker run -d \
+    -p 445:445 \
+    --restart=unless-stopped \
+    -v ~/data:/samba/data \
+    -e SMB_USERNAME=myuser \
+    -e SMB_USERPASSWD=mypassword \
+    --name samba \
+    ghcr.io/cho0h5/build-samba-container:main
 ```
 
-### run
-```bash
-#!/usr/bin/bash
-docker run -d \
-	-p 445:445 \
-	--restart=unless-stopped \
-	-v ~/tmp/nas/data:/samba/data \
-	-e SMB_USERNAME=mike \
-	-e SMB_USERPASSWD=mike \
-	--name samba \
-	cho0h5/samba
-```
+## Environment Variables
+
+| Variable | Description |
+|---|---|
+| `SMB_USERNAME` | Samba username (required) |
+| `SMB_USERPASSWD` | Samba password (required) |
