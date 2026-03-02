@@ -3,10 +3,9 @@ FROM alpine:3.21
 ENV SMB_USERNAME=sambatest
 ENV SMB_USERPASSWD=sambatest
 
-VOLUME ["/samba/data"]
+RUN apk add --no-cache samba-server samba-common-tools
 
-RUN mkdir -p /samba/data && \
-    apk add --no-cache samba-server samba-common-tools
+VOLUME ["/samba/data"]
 
 COPY docker-entrypoint.sh /docker-entrypoint.sh
 
