@@ -23,8 +23,8 @@ cat << EOF > /etc/samba/smb.conf
    force directory mode = 2770
    valid users = $SMB_USERNAME
 EOF
-addgroup -S -g "$SMB_GID" sambashare
-adduser -D -H -s /sbin/nologin -u "$SMB_UID" -G sambashare "$SMB_USERNAME"
+getent group sambashare > /dev/null 2>&1 || addgroup -S -g "$SMB_GID" sambashare
+getent passwd "$SMB_USERNAME" > /dev/null 2>&1 || adduser -D -H -s /sbin/nologin -u "$SMB_UID" -G sambashare "$SMB_USERNAME"
 chown "$SMB_USERNAME":sambashare /samba/data/
 (echo "$SMB_USERPASSWD"; echo "$SMB_USERPASSWD") | smbpasswd -s -a "$SMB_USERNAME"
 smbpasswd -e "$SMB_USERNAME"
